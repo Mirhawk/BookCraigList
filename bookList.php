@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
 <?php
-
+            //Git
                                 //Conencting to MySQL Database from here.
 $username = "mirhawk";
 $password = "apache";
