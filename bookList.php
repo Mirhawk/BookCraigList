@@ -28,30 +28,58 @@ $selected = mysqli_select_db($dbhandle,$dbname)
                                 //Done Connecting to MySQL Database.
 
 
-                               //Obtaining values from database and displaying them using automated table.
+                               //Obtaining values from database and displaying them using automated table for items available.
 $result = mysqli_query($dbhandle,"SELECT * FROM Persons");
-                                //Code for automated table
+              
+                                //Code for automated table for items
+$place="center";
 
 echo "
         <div style='text-align:center'>
         <div position: absolute; top: 50%;>
 
-        <table border='0' align='center'>
+        <table border='0' align='$place'>
         <tr>
         <th>Firstname</th>
         <th>Lastname</th>
         </tr>";
 
 while($row = mysqli_fetch_array($result)) {
+        echo "<tr>";
+        echo "<td>" . $row['FirstName'] . "</td>";
+        echo "<td>" . $row['LastName'] . "</td>";
+        echo "</tr>";
+}
+
+echo "</table> </div>";
+                            //Code for automated table for items ends here.
+
+                            //Obtaining values from database and displaying them using automated table for categories.
+$cat_result = mysqli_query($dbhandle,"SELECT * FROM cat");
+              
+                            //Code for automated table for Category
+
+echo "
+        <div style='text-align:center'>
+        <div position: absolute; top: 50%;>
+
+        <table border='0' align='left'>
+        <tr>
+        <th></th>
+        <th>Categories</th>
+        </tr>";
+
+while($row = mysqli_fetch_array($cat_result)) {
   echo "<tr>";
-  echo "<td>" . $row['FirstName'] . "</td>";
-  echo "<td>" . $row['LastName'] . "</td>";
+  echo "<td> <input type='radio' name='category'> </td>";
+  echo "<td>" . $row['cattype'] . "</td>";
   echo "</tr>";
 }
 
 echo "</table> </div>";
-                            //Code for automated table ends here.
-                            
+                            //Code for automated table for category ends here.
+
+
 mysqli_close($dbhandle);    //Closing the handle for database.
 ?>
     </body>
